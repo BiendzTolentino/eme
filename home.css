@@ -1,0 +1,74 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li:nth-last-child(1) h1 {
+    margin-right: auto; 
+   
+}
+
+nav {
+    background-color: brown; 
+    padding: 10px;
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+nav li {
+    float: right;
+}
+nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+nav li a:hover {
+    background-color: #0056b3; 
+}
+
+.zed1 {
+    margin-top: 250px;
+    margin-left: 600px;
+    color: aliceblue;
+    
+}
+
+body {
+    background-image: url(familypic.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.logouttt{
+    margin-left:1000px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.logouttt input{
+    background-color: brown;
+    color: aliceblue;
+    border-color: brown;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin-top: -9px;
+}
+.wcName{
+    color: aliceblue;
+ margin-top: -60px;
+ margin-left: 100px;
+}
+.wcName b{
+    margin-left: 5px;
+    color: yellow;
+    font-size: 40px;
+   
+   }

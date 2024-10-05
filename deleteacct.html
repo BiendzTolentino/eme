@@ -1,0 +1,83 @@
+<?php
+include "config.php";
+
+// Check user login or not
+if(!isset($_SESSION['uname'])){
+    header('Location: Login.php');
+}
+
+
+// logout
+if(isset($_POST['but_logout'])){
+    session_destroy();
+    header('Location: Login.php');
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-image: url(blacktechbackgroundbubbles.jpg);
+        background-size: cover;
+    }
+    h1{
+        text-align: center;
+        color: white;
+    }
+    .mes{
+        margin-top: 400px;
+        color: white;
+        text-align: center;
+    }
+    .button1 {
+        margin-top: 20px;
+    }
+    .button1 input{
+        text-decoration: none;
+        background-color: red;
+        color: white;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-radius: 8px;
+        margin-left: 580px;
+        margin-right: 580px;
+    }
+    .button2 {
+        margin-top: -28px;
+    }
+    .button2 a{
+        text-decoration: none;
+        background-color: green;
+        color: white;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 23px;
+        padding-right: 23px;
+        border-radius: 8px;
+        margin-left: 670px;
+        margin-right: 630px;
+    }
+
+</style>
+
+<body>
+    <h1>Do you want to Delete this Account??</h1>
+    <form action="delete_acct.php" method="post">
+    <div class="button1">
+        <input name="submit" type="submit" value="YES" id="submit_btn"/>
+    </div>
+    </form>
+    <div class="button2">
+        <a href="profile.php" name="changed_logout_btn" class="btn btn-primary">NO</a>
+    </div>
+
+</body>
+</html>

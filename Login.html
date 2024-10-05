@@ -1,0 +1,96 @@
+<?php 
+include "config.php";
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="logincss.css">
+    <title>Login</title>
+
+    <!-- Bootsrap CSS -->
+    <link rel="stylesheet" type="text/css" href= "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</head>
+<?php
+
+// Check if user has log in, it will redirected to the homepage
+if(isset($_SESSION['uname'])){
+    header('Location: Homee.php');
+}
+
+$error_message = "";
+
+if(isset($_POST['but_submit'])){
+    $uname = mysqli_real_escape_string($con,$_POST['uname']);
+    $password = mysqli_real_escape_string($con,$_POST['pwd']);
+
+    if ($uname != "" && $password != ""){
+
+        $sql_query = "SELECT count(*) as cntUser FROM users WHERE email='".$uname."' and password='".$password."'";
+        $result = mysqli_query($con,$sql_query);
+        $row = mysqli_fetch_array($result);
+
+
+        $count = $row['cntUser'];
+
+        if($count > 0){
+           
+            $_SESSION['uname'] = $uname;
+            $_SESSION['pwd'] = $pwd;
+            header('Location: Homee.php');
+         
+        }else{
+            $error_message = "Invalid username or password";
+      }
+    }
+
+}
+ 
+?>
+
+<body class="bgrimage">
+
+
+    <!--Display Error message -->
+    <?php 
+        if(!empty($error_message)){
+         ?>
+        <div class="alert alert-danger">
+             <strong>Error!</strong> <?= $error_message ?>
+        </div>
+        <?php
+        }
+    ?>
+    <div class="container">
+        <form method="post" action="">
+            <div id="div_login">
+                <h1>Login</h1>
+                <div>
+                    <input type="text" class="textbox" id="uname" name="uname" placeholder="Username" />
+                </div>
+                <div>
+                    <input type="password" class="textbox" id="pwd" name="pwd" placeholder="Password"/>
+                </div>
+                <div>
+                    <input type="submit" value="Login" name="but_submit" id="but_submit" />
+                </div>
+                <div class="register">
+                    <a href="signup.php" class="btn btn-primary">Register Here</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+</body>
+</html>
+
+

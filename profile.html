@@ -1,0 +1,200 @@
+<?php
+include "config.php";
+
+// Check user login or not
+if(!isset($_SESSION['uname'])){
+    header('Location: Login.php');
+}
+
+
+// logout
+if(isset($_POST['but_logout'])){
+    session_destroy();
+    header('Location: Login.php');
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+<nav>
+    <ul>
+    <div class="Logouttt3">
+              <form method='post' action="">
+                 <input type="submit" value="Logout" name="but_logout">
+              </form>
+        </div>
+        <li><a href="contact.php">Contact</a></li>
+        <li><a href="profile.php">My Profile</a></li>
+        <li><a href="Homee.php">Home</a></li>
+        
+        
+    </ul>
+</nav>
+    <h1 class="M_details"><b>MY DETAILS</b></h1>
+    
+    <!--Personal details -->
+    <h2 class="Personal_Info ">PERSONAL INFO</h2>
+
+    <?php
+    $uname = $_SESSION["uname"];
+    $sql = "SELECT * FROM details WHERE Email='$uname' ";
+
+
+    $result = $con->query($sql);
+
+    while($row = $result->fetch_assoc()) {
+       $firstname =$row["Fname"];
+       $midname =$row["Mname"];
+       $lastname =$row["Lname"];
+       $D_birth =$row["dbirth"];
+       $addr =$row["Address"];
+       $phone_num =$row["PhoneNum"];
+       $E_mail =$row["Email"];
+      }
+
+    ?>
+    <div class="L1_Con">
+         <h3 class="L1_Fname">First Name: <b><?php echo $firstname ?><b></h3>
+         <h3 class="L1_Mname">Middle Name: <b><?php echo $midname ?><b></h3>
+         <h3 class="L1_Lname">Last Name: <b><?php echo $lastname ?><b></h3>
+         <h3 class="L1_Dbirth">Date of Birth: <b><?php echo $D_birth ?><b></h3>
+         <h3 class="L1_Address">Address: <b><?php echo $addr ?><b></h3>
+         <h3 class="L1_PhoneNum">Phone Number: <b><?php echo $phone_num ?><b></h3>
+         <h3 class="L1_Email">Email: <b><?php echo $E_mail ?><b></h3>
+    </div>
+
+     <!--Property details -->
+     <h2 class="Property_Details ">PROPERTY DETAILS</h2>
+
+     <?php
+     $uname = $_SESSION["uname"];
+     $sql = "SELECT * FROM propertydetails where email='$uname' ";
+     $result = $con->query($sql);
+
+    while($row = $result->fetch_assoc()) {
+       $property_address =$row["property_address"];
+       $property_type =$row["property_type"];
+       $square_footage =$row["square_footage"];
+       $num_of_bedrooms_and_bathrooms =$row["num_of_bedrooms_and_bathrooms"];
+      }
+    ?>
+    <div class="L2_Con">
+         <h3 class="L2_Property_address">Adress of the Property: <b><?php echo $property_address ?><b></h3>
+         <h3 class="L2_Property_type">Type of Property: <b><?php echo $property_type ?><b></h3>
+         <h3 class="L2_Square_footer">Square Footage: <b><?php echo $square_footage ?><b></h3>
+         <h3 class="L2_Num_of_bed_and_bath">Number of Bedroom and Bathrooms: <b><?php echo $num_of_bedrooms_and_bathrooms ?><b></h3>
+    </div>
+
+    
+    <!--Ownership Information -->
+    <h2 class="Ownership_Information ">OWNERSHIP INFORMATION</h2>
+    <?php
+    $uname = $_SESSION["uname"];
+    $sql = "SELECT * FROM ownershipinfo WHERE email='$uname' ";
+    $result = $con->query($sql);
+
+    while($row = $result->fetch_assoc()) {
+       $Ownership_Type =$row["ownership_type"];    
+      }
+
+    ?>
+    <div class="L3_Con">
+         <h3 class="L3_Ownership_Info">First Name: <b><?php echo $Ownership_Type ?><b></h3>
+    </div>
+
+    <!--Insurance Information -->
+    <h2 class="Insurance_Information ">INSURANCE INFORMATION</h2>
+
+    <?php
+    $uname = $_SESSION["uname"];
+    $sql = "SELECT * FROM insuranceinfo WHERE email='$uname' ";
+    $result = $con->query($sql);
+
+    while($row = $result->fetch_assoc()) {
+       $Home_Insurance =$row["home_insurance"];
+       $Date_of_Insurance =$row["date_of_insurance"];   
+       $Coverage =$row["coverage"];   
+      }
+    ?>
+    <div class="L4_Con">
+         <h3 class="L4_Home_Insurance">Home Insurance: <b><?php echo $Home_Insurance ?><b></h3>
+         <h3 class="L4_Date_of_Insurance">Date of Insurance: <b><?php echo $Date_of_Insurance ?><b></h3>
+         <h3 class="L4_Coverage">Coverage: <b><?php echo $Coverage ?><b></h3>
+    </div>
+
+    <!--Emergency Contact -->
+    <h2 class="Emergency_Contact ">EMERGENCY CONTACT</h2>
+
+    <?php
+    $uname = $_SESSION["uname"];
+    $sql = "SELECT * FROM emergencycontact WHERE email='$uname' ";
+    $result = $con->query($sql);
+
+    while($row = $result->fetch_assoc()) {
+       $Full_Name =$row["full_name"];
+       $Contact_No =$row["contact_no"];   
+      }
+    ?>
+     <div class="L5_Con">
+         <h3 class="L5_Full_Name">Full Name: <b><?php echo $Full_Name ?><b></h3>
+         <h3 class="L5_Contact_No">Contact Number: <b><?php echo $Contact_No ?><b></h3>
+    </div>
+
+     <!--Utility Information -->
+     <h2 class="Utility_Information ">UTILITY INFORMATION</h2>
+
+     <?php
+    $uname = $_SESSION["uname"];
+    $sql = "SELECT * FROM utilityinformation WHERE email='$uname' ";
+    $result = $con->query($sql);
+
+    while($row = $result->fetch_assoc()) {
+       $Electricity =$row["electricity"];
+       $Water =$row["water"];   
+       $Gas =$row["gas"];
+       $Wifi =$row["wifi"];   
+      }
+    ?>
+      <div class="L6_Con">
+         <h3 class="L6_Electricity">Full Name: <b><?php echo $Electricity ?><b></h3>
+         <h3 class="L6_Water">Contact Number: <b><?php echo $Water ?><b></h3>
+         <h3 class="L6_Gas">Full Name: <b><?php echo $Gas ?><b></h3>
+         <h3 class="L6_Wifi">Contact Number: <b><?php echo $Wifi ?><b></h3>
+    </div>
+    <!--HOA -->
+    <h2 class="HOA ">HOME OWNER ASSOCIATION (HOA)</h2>
+
+    <?php
+    $uname = $_SESSION["uname"];
+    $sql = "SELECT * FROM homeownerassociation WHERE email='$uname' ";
+    $result = $con->query($sql);
+
+    while($row = $result->fetch_assoc()) {
+       $HOA =$row["hoa"];  
+      }
+    ?>
+    <div class="L7_Con">
+         <h3 class="L7_Homeowner_Association">Homeowner Association: <b><?php echo $HOA ?><b></h3>
+    </div>
+
+    <div class="spacinggg"></div>
+
+                 <div class="ChangePass">
+                    <a href="changepass.php" class="btn btn-primary">Change Password</a>
+                </div>
+                <div class="spacinggg2"></div>  
+                <div class="DeleteAccount">
+                    <a href="deleteacct.php" class="btn btn-primary">Delete Account</a>
+                </div>
+    <div class="spacinggg"></div>
+
+</body>
+</html>

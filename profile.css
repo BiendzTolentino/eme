@@ -1,0 +1,380 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url(whitetechbackground.webp);
+    
+}
+
+
+nav ul li:nth-last-child(1) h1 {
+    margin-right: auto; 
+}
+
+nav {
+    background-color: brown; 
+    padding: 10px;
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+nav li {
+    float: right;
+}
+nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+nav li a:hover {
+    background-color: #0056b3; 
+}
+
+.zed1 {
+    margin-top: 250px;
+    margin-left: 600px;
+    color: aliceblue;
+    
+}
+.c1 {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.devp {
+    text-align: center;
+}
+.photo {
+    width: 300px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+
+}
+.description {
+    margin-top: 20px; /* Add space between photo and description */
+    font-size: 18px; /* Adjust font size as needed */
+    color: wheat;
+}
+.Logouttt3{
+    margin-left:1000px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: -43px;
+
+}
+.Logouttt3 input{
+    background-color: brown;
+    color: aliceblue;
+    border-color: brown;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin-bottom: -300px;
+}
+.M_details{
+    margin-left: 580px;
+    color: goldenrod;
+    background-color: white;
+    border-radius: 8px;
+    margin-right: 580px;
+}
+
+/*1st row*/
+.L1_Con{
+    background-color: darkblue;
+    margin-left: 50px;
+    margin-right: 50px;
+    border-radius: 5px;
+}
+/*2nd row*/
+.L2_Con{
+    background-color: darkblue;
+    margin-left: 50px;
+    margin-right: 50px;
+    border-radius: 5px;
+}
+/*3rd row*/
+.L3_Con{
+    background-color: darkblue;
+    margin-left: 50px;
+    margin-right: 50px;
+    border-radius: 5px;
+}
+.L4_Con{
+    background-color: darkblue;
+    margin-left: 50px;
+    margin-right: 50px;
+    border-radius: 5px;
+}
+.L5_Con{
+    background-color: darkblue;
+    margin-left: 50px;
+    margin-right: 50px;
+    border-radius: 5px;
+}
+.L6_Con{
+    background-color: darkblue;
+    margin-left: 50px;
+    margin-right: 50px;
+    border-radius: 5px;
+}
+.L7_Con{
+    background-color: darkblue;
+    margin-left: 50px;
+    margin-right: 50px;
+    border-radius: 5px;
+}
+
+/*personal details*/
+
+.Personal_Info{
+    margin-left: 50px;
+    color: goldenrod;
+    text-decoration: underline;
+    background-color: white;
+    border-radius: 8px;
+    margin-right: 1095px;
+}
+
+.L1_Fname{
+    color: aliceblue;
+    margin-left: 50px;
+}
+.L1_Fname b{
+    color: yellow;
+}
+.L1_Mname{
+    color: aliceblue;
+    margin-left: 50px;
+}
+.L1_Mname b{
+    color: yellow;
+}
+.L1_Lname{
+    color: aliceblue;
+    margin-left: 50px;
+}
+.L1_Lname b{
+    color: yellow;
+}
+.L1_Dbirth{
+    color: aliceblue;
+    margin-left: 50px;
+}
+.L1_Dbirth b{
+    color: yellow;
+}
+.L1_Address{
+    color: aliceblue;
+    margin-left: 50px;
+}
+.L1_Address b{
+    color: yellow;
+}
+.L1_PhoneNum{
+    color: aliceblue;
+    margin-left: 50px;
+}
+.L1_PhoneNum b{
+    color: yellow;
+}
+.L1_Email{
+    color: aliceblue;
+    margin-left: 50px;
+}
+.L1_Email b{
+    color: yellow;
+}
+/*property details*/
+.Property_Details{
+    margin-left: 50px;
+    color: goldenrod;
+    text-decoration: underline;
+    background-color: white;
+    border-radius: 8px;
+    margin-right: 1060px;
+}
+.L2_Property_address{
+    color: aliceblue;
+    margin-left: 50px;
+}
+.L2_Property_address b{
+    color: yellow;
+}
+.L2_Property_type{
+    color: aliceblue;
+    margin-left: 50px;
+}
+.L2_Property_type b{
+    color: yellow;
+}
+.L2_Square_footer{
+    color: aliceblue;
+    margin-left: 50px;
+}
+.L2_Square_footer b{
+    color: yellow;
+}
+.L2_Num_of_bed_and_bath{
+    color: aliceblue;
+    margin-left: 50px;
+}
+.L2_Num_of_bed_and_bath b{
+    color: yellow;
+}
+/*Ownership Information*/
+.Ownership_Information{
+    margin-left: 50px;
+    color: goldenrod;
+    text-decoration: underline;
+    background-color: white;
+    border-radius: 8px;
+    margin-right: 970px;
+}
+.L3_Ownership_Info{
+    color: aliceblue;
+    margin-left: 50px;
+}
+.L3_Ownership_Info b{
+    color: yellow;
+}
+/*Insurance Information*/
+.Insurance_Information{
+    margin-left: 50px;
+    color: goldenrod;
+    text-decoration: underline;
+    background-color: white;
+    border-radius: 8px;
+    margin-right: 980px;
+}
+.L4_Home_Insurance{
+    color: aliceblue;
+    margin-left: 50px;
+}
+.L4_Home_Insurance b{
+    color: yellow;
+}
+.L4_Date_of_Insurance{
+    color: aliceblue;
+    margin-left: 50px;
+}
+.L4_Date_of_Insurance b{
+    color: yellow;
+}
+.L4_Coverage{
+    color: aliceblue;
+    margin-left: 50px;
+}
+.L4_Coverage b{
+    color: yellow;
+}
+/*Emergency Contact*/
+.Emergency_Contact{
+    margin-left: 50px;
+    color: goldenrod;
+    text-decoration: underline;
+    background-color: white;
+    border-radius: 8px;
+    margin-right: 1020px;
+}
+.L5_Full_Name{
+    color: aliceblue;
+    margin-left: 50px;
+}
+.L5_Full_Name b{
+    color: yellow;
+}
+.L5_Contact_No{
+    color: aliceblue;
+    margin-left: 50px;
+}
+.L5_Contact_No b{
+    color: yellow;
+}
+/*Utility Information*/
+.Utility_Information{
+    margin-left: 50px;
+    color: goldenrod;
+    text-decoration: underline;
+    background-color: white;
+    border-radius: 8px;
+    margin-right: 1030px;
+}
+.L6_Electricity{
+    color: aliceblue;
+    margin-left: 50px;
+}
+.L6_Electricity b{
+    color: yellow;
+}
+.L6_Water{
+    color: aliceblue;
+    margin-left: 50px;
+}
+.L6_Water b{
+    color: yellow;
+}
+.L6_Gas{
+    color: aliceblue;
+    margin-left: 50px;
+}
+.L6_Gas b{
+    color: yellow;
+}
+.L6_Wifi{
+    color: aliceblue;
+    margin-left: 50px;
+}
+.L6_Wifi b{
+    color: yellow;
+}
+/*Ownership Information*/
+.HOA{
+    margin-left: 50px;
+    color: goldenrod;
+    text-decoration: underline;
+    background-color: white;
+    border-radius: 8px;
+    margin-right: 880px;
+}
+.L7_Homeowner_Association{
+    color: aliceblue;
+    margin-left: 50px;
+}
+.L7_Homeowner_Association b{
+    color: yellow;
+}
+
+.spacinggg{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.spacinggg2{
+    margin-top: -18px;
+ 
+}
+
+/*Change pass*/
+.ChangePass a{
+    text-decoration: none;
+    background-color: skyblue;
+    padding: 13px;
+    border-radius: 8px;
+    margin-left: 500px;
+}
+
+.DeleteAccount a{
+    margin-top: -50px;
+    text-decoration: none;
+    background-color: skyblue;
+    padding: 13px;
+    border-radius: 8px;
+    margin-left: 700px;
+}

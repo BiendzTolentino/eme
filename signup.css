@@ -1,0 +1,154 @@
+.bgrImage{
+  background-image: url("Laspinasbirdseyeview-bgr.png");
+  background-position: center;
+height:fixed;
+width:fixed;
+
+background-position:center;
+background-repeat: no-repeat;
+background-size:cover;
+
+background-attachment: fixed;
+}
+
+
+.signup{
+  color: burlywood;
+  margin-top: -30px;
+  margin-bottom: 100px;
+  margin-left: 140px;
+
+}
+
+.container{
+  margin-left: -200px;
+  margin-top: 50px;
+
+}
+.form-group{
+    color: whitesmoke;
+
+
+}
+h3{
+  color: yellow;
+}
+
+h5{
+  color: yellow;
+}
+
+.example{
+  color: orange;
+  margin-top: -24px;
+  margin-left: 130px;
+}
+.example1{
+  color: orange;
+  margin-top: -24px;
+  margin-left: 95px;
+}
+.example2{
+  color: orange;
+  margin-top: -24px;
+  margin-left: 112px;
+}
+.example3{
+  color: orange;
+  margin-top: -24px;
+  margin-left: 272px;
+}
+.example4{
+  color: orange;
+  margin-top: -24px;
+  margin-left: 124px;
+}
+.example5{
+  color: orange;
+  margin-top: -24px;
+  margin-left: 44px;
+}
+.example6{
+  color: orange;
+  margin-top: -24px;
+  margin-left: 177px;
+}
+
+.notifi1{
+  margin-left: -50px;
+  margin-right: 50px;
+}
+.notifi2{
+
+  margin-bottom: 50px;
+  margin-left: 280px;
+  margin-right: -280px;
+}
+.notifi4{
+  margin-top: -677px;
+  margin-left: 670px;
+  margin-right: -670px;
+
+}
+.notifi3{
+  margin-top: -190px;
+  margin-left: 670px;
+  margin-right: -670px;
+ 
+}
+
+.notifi5{
+  margin-top: 400px;
+}
+
+.notifi6{
+  margin-top: -9px;
+  margin-left: 670px;
+  margin-right: -670px;
+}
+
+.notifi7{
+  margin-top: -12px;
+  margin-left: 670px;
+  margin-right: -670px;
+}
+.notifi8{
+ margin-top: -126px;
+}
+.notifi9{
+  margin-top: -10px;
+  
+ }
+ .notifi10{
+  margin-top: -472px;
+  margin-left: 670px;
+  margin-right: -670px;
+  margin-bottom: 200px;
+ }
+
+.button{
+  margin-left: 830px;
+  margin-bottom: 100px;
+  
+}
+.button2 {
+  margin-left: 530px;
+  margin-bottom: -90px;
+
+}
+.button button{
+  text-decoration: none;
+ border-radius: 5px;
+ border-color: white;
+ 
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.button :hover{
+  background-color: green;
+  color: gold;
+  transition: 0.5s;
+  border-color: green;
+}

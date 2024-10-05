@@ -1,0 +1,91 @@
+<?php
+include "config.php";
+
+// Check user login or not
+if(!isset($_SESSION['uname'])){
+    header('Location: Login.php');
+}
+
+// logout
+if(isset($_POST['but_logout'])){
+    session_destroy();
+    header('Location: Login.php');
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEVELOPERS</title>
+    <link rel="stylesheet" href="Contact.css">
+
+</head>
+<body>
+    <nav>
+        <ul>
+            
+            <li><a href="contact.php">Contact</a></li>
+            <li><a href="profile.php">My Profile</a></li>
+            <li><a href="Homee.php">Home</a></li>
+            <div class="Logouttt2">
+              <form method='post' action="">
+                 <input type="submit" value="Logout" name="but_logout">
+              </form>
+            </div>
+           
+            <h1></h1>
+           
+        </ul>
+    </nav>
+    
+    <div class="c1"><h1> DEVELOPERS</h1></div>
+
+    <div class="devp">
+        <img class="photo" src="bienn.jpg" alt="Photo 1">
+        <b>
+        <div class="description">Name: Biendelle Tolentino</div>
+        <div class="description">BSIS2-03</div>
+        <div class="description">Alias: Pogi</div>
+        <div class="description">Telephone No.: 876381233</div>
+        </b>
+
+    </div>
+    
+    <div class="devp">
+        <img class="photo" src="junn.jpg" alt="Photo 1">
+        <b>
+        <div class="description">Name: Junmari Deguzman</div>
+        <div class="description">BSIS2-03</div>
+        <div class="description">Alias: Wiwi Man</div>
+        <div class="description">Telephone No.: 876238613</div>
+        </b>
+
+    </div>
+
+    <div class="devp">
+        <img class="photo" src="anton.jpg" alt="Photo 1">
+        <b>
+        <div class="description">Name: Anton Cypress</div>
+        <div class="description">BSIS2-03</div>
+        <div class="description">Alias: Tara Obus</div>
+        <div class="description">Telephone No.: 127364309</div>
+        </b>
+
+    </div>
+
+    <div class="devp">
+        <img class="photo" src="ugh.jpg" alt="Photo 1">
+        <b>
+        <div class="description">Name: John Michael Rudavites</div>
+        <div class="description">BSIS2-03</div>
+        <div class="description">Alias: Yamete</div>
+        <div class="description">Telephone No.: 8762381</div>
+        </b>
+
+    </div>
+
+</body>
+</html>

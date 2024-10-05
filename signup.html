@@ -1,0 +1,421 @@
+
+<?php 
+     include "config.php";
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="signup.css">
+    <title>SignUp/Register</title>
+
+    <!-- Bootsrap CSS -->
+    <link rel="stylesheet" type="text/css" href= "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <?php
+    $error_message = "";$success_message = "";
+
+    if(isset($_POST['btnsignup'])){
+        $fname = trim($_POST['fname']);
+        $lname = trim($_POST['lname']);
+        $email = trim($_POST['email']);
+        $password = trim($_POST['password']);
+        $confirmpassword = trim($_POST['confirmpassword']);
+
+        $mname = trim($_POST['mname']);
+        $dbirth = trim($_POST['dbirth']);
+        $address = trim($_POST['address']);
+        $phoneNum = trim($_POST['phoneNum']);
+
+        $propertyAdd = trim($_POST['propertyAdd']);
+        $propertyType = trim($_POST['propertyType']);
+        $squareFootage = trim($_POST['squareFootage']);
+        $numOfBedBath = trim($_POST['numOfBedBath']);
+
+        $OwnerInfo = trim($_POST['OwnerInfo']);
+
+        $H_Insurance = trim($_POST['H_Insurance']);
+        $D_Insurance = trim($_POST['D_Insurance']);
+        $coverage = trim($_POST['coverage']);
+
+        $comlete_name = trim($_POST['comlete_name']);
+        $cont_num = trim($_POST['cont_num']);
+
+        $electricity = trim($_POST['electricity']);
+        $water = trim($_POST['water']);
+        $gas = trim($_POST['gas']);
+        $wifi = trim($_POST['wifi']);
+
+        $HOA = trim($_POST['HOA']);
+         
+
+        $isValid = true;
+
+        //Check if field are empty or not
+        if($fname == '' || $lname == '' || $email == '' || $password == '' || $confirmpassword == ''
+        || $mname == '' || $dbirth == '' || $address == '' || $phoneNum == ''|| $propertyAdd == ''
+        || $propertyType == ''|| $squareFootage == ''|| $numOfBedBath == '' || $OwnerInfo == '' 
+        || $H_Insurance == '' || $D_Insurance == '' || $coverage == ''|| $comlete_name == ''|| $cont_num == ''
+        || $electricity == ''|| $water == ''|| $gas == ''|| $wifi == ''|| $HOA == ''){
+
+            $isValid = false;
+            $error_message = "Please fill all fields";
+        }
+
+        //Check if confirm password matching or not
+        if($isValid && ($password != $confirmpassword)){
+            $isValid = false;
+            $error_message = "Confirm password not matching.";
+        }
+
+        //Check if Email-ID is valid or not
+        if($isValid && !(filter_var($email,FILTER_VALIDATE_EMAIL))){
+            $isValid = false;
+            $error_message = "Invalid Email-ID";
+        }
+
+        //Check if Email-ID already exists
+        if($isValid){
+            $stmt = $con->prepare("SELECT * FROM users WHERE email=?");
+            $stmt ->bind_param('s',$email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            if($result->num_rows > 0){
+                $isValid = false;
+                $error_message = "Email-ID is already exists.";
+            }
+        }
+
+        //Insert record
+        if($isValid){
+            $id = rand(0,1000);
+            $details_id = $id;
+            $home_id = rand(0,1000);
+            $property_home_id = $home_id;
+            $property_num = rand(0,1000);
+            $owner_id = $property_num;
+            $insurance_property_num = $property_num;
+            $insurance_num =rand(0,1000);
+            $emergency_id = $id;
+            $utility_id = $property_num;
+            $hoa_id = $property_num;
+
+            $insertSQL = "INSERT INTO users(id,fname,lname,email,password) VALUES (?,?,?,?,?)";
+
+            $stmt = $con->prepare($insertSQL);
+            $stmt->bind_param('sssss',$id,$fname,$lname,$email,$password);
+            $stmt->execute();
+            $stmt->close();
+
+
+            $insertSQL = "INSERT INTO details(id,home_id,Fname,Mname,Lname,dbirth,Address,PhoneNum,Email)
+             VALUES 
+            (?,?,?,?,?,?,?,?,?)";
+
+            $stmt = $con->prepare($insertSQL);
+            $stmt->bind_param('sssssssss',$details_id,$home_id,$fname,$mname,$lname,$dbirth,$address,$phoneNum,$email);
+            $stmt->execute();
+            $stmt->close();
+
+            $insertSQL = "INSERT INTO propertydetails(home_id,property_no,property_address,property_type,square_footage,num_of_bedrooms_and_bathrooms,email)
+             VALUES 
+            (?,?,?,?,?,?,?)";
+
+            $stmt = $con->prepare($insertSQL);
+            $stmt->bind_param('sssssss',$property_home_id,$property_num,$propertyAdd,$propertyType,$squareFootage,$numOfBedBath,$email);
+            $stmt->execute();
+            $stmt->close();
+
+            $insertSQL = "INSERT INTO ownershipinfo(property_no,ownership_type,email)
+            VALUES 
+            (?,?,?)";
+
+            $stmt = $con->prepare($insertSQL);
+            $stmt->bind_param('sss',$owner_id,$OwnerInfo,$email);
+            $stmt->execute();
+            $stmt->close();
+
+            $insertSQL = "INSERT INTO insuranceinfo(insurance_no,property_no,home_insurance,date_of_insurance,coverage,email)
+            VALUES 
+            (?,?,?,?,?,?)";
+
+            $stmt = $con->prepare($insertSQL);
+            $stmt->bind_param('ssssss',$insurance_num,$insurance_property_num,$H_Insurance,$D_Insurance,$coverage,$email);
+            $stmt->execute();
+            $stmt->close();
+
+            $insertSQL = "INSERT INTO emergencycontact(id,full_name,contact_no,email)
+            VALUES 
+            (?,?,?,?)";
+
+            $stmt = $con->prepare($insertSQL);
+            $stmt->bind_param('ssss',$emergency_id,$comlete_name,$cont_num,$email);
+            $stmt->execute();
+            $stmt->close();
+
+            $insertSQL = "INSERT INTO utilityinformation(property_no,electricity,water,gas,wifi,email)
+            VALUES 
+            (?,?,?,?,?,?)";
+
+            $stmt = $con->prepare($insertSQL);
+            $stmt->bind_param('ssssss',$utility_id,$electricity,$water,$gas,$wifi,$email);
+            $stmt->execute();
+            $stmt->close();
+
+
+            $insertSQL = "INSERT INTO homeownerassociation(property_no,hoa,email)
+            VALUES 
+            (?,?,?)";
+
+            $stmt = $con->prepare($insertSQL);
+            $stmt->bind_param('sss',$hoa_id,$HOA,$email);
+            $stmt->execute();
+            $stmt->close();
+
+            $success_message = "Account created Successfully.";
+        }
+    }
+    ?>
+
+</head>
+<body class="bgrImage">
+   
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+
+                <form method="POST" action="">
+                <div class="button2">
+                       <a href="Login.php" class="btn btn-primary">Back</a>
+                    </div>
+                    <div class="notifi2">
+                    <h1 class="signup">SignUp/Register</h1>
+                    <!--Display Error message -->
+                    <?php 
+                        if(!empty($error_message)){
+                            ?>
+                            <div class="alert alert-danger">
+                                <strong>Error!</strong> <?= $error_message ?>
+                            </div>
+                            <?php
+                        }
+                        ?>
+
+                    <!--Display Success message -->
+                    <?php 
+                        if(!empty($success_message)){
+                            ?>
+                            <div class="alert alert-success">
+                                <strong>Success!</strong> <?= $success_message ?>
+                            </div>
+                            <?php
+                        }
+                        ?>
+                    </div>
+                    
+                    <div class="notifi1">
+
+                    <!-- Personal info -->
+                    <h3>1. Personal Info</h3>
+
+                    <div class="form-group">
+                        <label for="fname">First Name: </label>
+                        <input type="text" class="form-control" name="fname" 
+                        id="fname" required maxlenght="80">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mname">Middle Name: </label>
+                        <input type="text" class="form-control" name="mname" 
+                        id="mname" required maxlenght="80">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="lname">Last Name: </label>
+                        <input type="text" class="form-control" name="lname" 
+                        id="lname" required maxlenght="80">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dbirth">Date of Birth: <div class="example1">(YYYY-MM-DD)</div></label>
+                        <input type="text" class="form-control" name="dbirth" 
+                        id="dbirth" required maxlenght="80">
+                    </div>
+
+                    <h5>Contact Details</h5>
+                 
+                    <div class="form-group">
+                        <label for="address">Address: </label>
+                        <input type="text" class="form-control" name="address" 
+                        id="address" required maxlenght="80">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phoneNum">Phone Number: <div class="example2">(09XX-XXX-XXXX)</div></label>
+                        <input type="text" class="form-control" name="phoneNum" 
+                        id="phoneNum" required maxlenght="80">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email: <div class="example5">(also used as your username for login)</div></label>
+                        <input type="email" class="form-control" name="email" 
+                        id="email" required maxlenght="80">
+                    </div>
+
+                    
+
+                    <!-- Property details-->
+                    <div class="notifi4">
+                    <h3>2. Property Details</h3>    
+
+                    <div class="form-group">
+                        <label for="propertyAdd">Adress of the Property: </label>
+                        <input type="text" class="form-control" name="propertyAdd" 
+                        id="propertyAdd" required maxlenght="80">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="propertyType">Type of Property: <div class="example4">(e.g single-family home, condo, townhouse)</div></label>
+                        <input type="text" class="form-control" name="propertyType" 
+                        id="propertyType" required maxlenght="80">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="squareFootage">Square footage: </label>
+                        <input type="text" class="form-control" name="squareFootage" 
+                        id="squareFootage" required maxlenght="80">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="numOfBedBath">Number of Bedrooms and Bathrooms: <div class="example3">(e.g 3 bedrooms, 2 bathrooms)</div></label>
+                        <input type="text" class="form-control" name="numOfBedBath" 
+                        id="numOfBedBath" required maxlenght="80">
+                    </div>
+                    </div>
+
+                    <!-- Ownership info-->
+                    <div class="notifi6">
+                    <h3>3. Ownership Information</h3>    
+
+                    <div class="form-group">
+                        <label for="OwnerInfo">Owner Info: </label>
+                        <input type="text" class="form-control" name="OwnerInfo" 
+                        id="OwnerInfo" required maxlenght="80">
+                    </div>
+                    </div>
+
+                     <!-- Insurance Information-->
+                     <div class="notifi7">
+                    <h3>4. Insurance Information</h3>    
+
+                    <div class="form-group">
+                        <label for="H_Insurance">Home Insurance: </label>
+                        <input type="text" class="form-control" name="H_Insurance" 
+                        id="H_Insurance" required maxlenght="80">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="D_Insurance">Date of Insurance: <div class="example">(YYYY-MM-DD)</div></label>
+                        <input type="text" class="form-control" name="D_Insurance" 
+                        id="D_Insurance" required maxlenght="80">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="coverage">Coverage: </label>
+                        <input type="text" class="form-control" name="coverage" 
+                        id="coverage" required maxlenght="80">
+                    </div>
+                    </div>
+
+                       <!-- Emergency Contact-->
+                       <div class="notifi8">
+                    <h3>5. Emergency Contact</h3>    
+
+                    <div class="form-group">
+                        <label for="comlete_name">Full Name: </label>
+                        <input type="text" class="form-control" name="comlete_name" 
+                        id="comlete_name" required maxlenght="80">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cont_num">Contact Number: <div class="example">(09XX-XXX-XXXX)</div></label>
+                        <input type="text" class="form-control" name="cont_num" 
+                        id="cont_num" required maxlenght="80">
+                    </div>
+                    </div>
+
+                     <!-- Utility Information-->
+                     <div class="notifi9">
+                    <h3>6. Utility Information</h3>    
+
+                    <div class="form-group">
+                        <label for="electricity">Electricity: </label>
+                        <input type="text" class="form-control" name="electricity" 
+                        id="electricity" required maxlenght="80">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="water">Water: </label>
+                        <input type="text" class="form-control" name="water" 
+                        id="water" required maxlenght="80">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gas">Gas: </label>
+                        <input type="text" class="form-control" name="gas" 
+                        id="gas" required maxlenght="80">
+                    </div>
+                    <div class="form-group">
+                        <label for="wifi">Wifi: </label>
+                        <input type="text" class="form-control" name="wifi" 
+                        id="wifi" required maxlenght="80">
+                    </div>
+                    </div>
+
+                     <!-- Home Owner Association (HOA)"IF Applicable"-->
+                    <div class="notifi10">
+                    <h3>7. Home Owner Association (HOA) "IF Applicable"</h3>    
+
+                    <div class="form-group">
+                        <label for="HOA">Homeowner Association: <div class="example6">("N/A" if not have one)</div></label>
+                        <input type="text" class="form-control" name="HOA" 
+                        id="HOA" required maxlenght="80">
+                    </div>
+                    </div>
+
+                    <div class="notifi3">
+                     <!-- Password -->
+                     <h3>Create Password</h3>
+                    <div class="form-group">
+                        <label for="password">Password: </label>
+                        <input type="password" class="form-control" name="password" 
+                        id="password" required maxlenght="80">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmpassword">Confirm Password: </label>
+                        <input type="password" class="form-control" name="confirmpassword" 
+                        id="confirmpassword" required maxlenght="80">
+                         </div>
+                    </div>
+                </div>
+
+                    <div class="button">
+                    <button type="submit" name="btnsignup" class="bnt btn-default">Submit</button>
+                    </div>
+                </form>
+            </div> 
+        </div>      
+    </div>
+</body>
+</html>

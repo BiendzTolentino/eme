@@ -1,0 +1,118 @@
+<?php
+include "config.php";
+
+// Check user login or not
+if(!isset($_SESSION['uname'])){
+    header('Location: Login.php');
+}
+
+
+// logout
+if(isset($_POST['but_logout'])){
+    session_destroy();
+    header('Location: Login.php');
+}
+?>
+
+<?php 
+
+
+
+    $uname = $_SESSION["uname"];
+    $sql = "SELECT id FROM users WHERE email='$uname' ";
+    $result = $con->query($sql);
+    while($row = $result->fetch_assoc()) {
+        $id =$row["id"];
+       }
+
+    $uname = $_SESSION["uname"];
+    $sql = "SELECT home_id FROM details WHERE Email='$uname' ";
+    $result = $con->query($sql);
+    while($row = $result->fetch_assoc()) {
+        $home_id =$row["home_id"];
+       }
+
+    $uname = $_SESSION["uname"];
+    $sql = "SELECT property_no FROM propertydetails WHERE email='$uname' ";
+    $result = $con->query($sql);
+    while($row = $result->fetch_assoc()) {
+        $property_no =$row["property_no"];
+       }
+
+    $uname = $_SESSION["uname"];
+    $sql = "SELECT property_no FROM ownershipinfo WHERE email='$uname' ";
+    $result = $con->query($sql);
+    while($row = $result->fetch_assoc()) {
+        $property_no2 =$row["property_no"];
+       }
+
+    $uname = $_SESSION["uname"];
+    $sql = "SELECT insurance_no FROM insuranceinfo WHERE email='$uname' ";
+    $result = $con->query($sql);
+    while($row = $result->fetch_assoc()) {
+        $insurance_no =$row["insurance_no"];
+       }
+
+    $uname = $_SESSION["uname"];
+    $sql = "SELECT id FROM emergencycontact WHERE email='$uname' ";
+    $result = $con->query($sql);
+    while($row = $result->fetch_assoc()) {
+        $id2 =$row["id"];
+       }
+
+    $uname = $_SESSION["uname"];
+    $sql = "SELECT property_no FROM utilityinformation WHERE email='$uname' ";
+    $result = $con->query($sql);
+    while($row = $result->fetch_assoc()) {
+        $property_no3 =$row["property_no"];
+       }
+
+    $uname = $_SESSION["uname"];
+    $sql = "SELECT property_no FROM homeownerassociation WHERE email='$uname' ";
+    $result = $con->query($sql);
+    while($row = $result->fetch_assoc()) {
+        $property_no4 =$row["property_no"];
+       }
+
+
+    $sql = "DELETE FROM users WHERE id='$id' ";
+    $result = $con->query($sql);
+
+    $sql = "DELETE FROM details WHERE home_id='$home_id'";
+    $result = $con->query($sql);
+    
+    $sql = "DELETE FROM propertydetails WHERE property_no='$property_no'";
+    $result = $con->query($sql);
+    $sql = "DELETE FROM ownershipinfo WHERE property_no='$property_no2'";
+    $result = $con->query($sql);
+    $sql = "DELETE FROM insuranceinfo WHERE insurance_no='$insurance_no'";
+    $result = $con->query($sql);
+    $sql = "DELETE FROM emergencycontact WHERE id='$id2'";
+    $result = $con->query($sql);
+    $sql = "DELETE FROM utilityinformation WHERE property_no='$property_no3'";
+    $result = $con->query($sql);
+    $sql = "DELETE FROM homeownerassociation WHERE property_no='$property_no4'";
+
+    if ($con->query($sql) === TRUE) {
+        session_destroy();
+        header('Location: deleteacct_complete.php');
+    } else {
+      echo "Error deleting record: " . $con->error;
+    }
+    
+    $con->close();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+
+</body>
+</html>
